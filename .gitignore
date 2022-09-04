@@ -2,5 +2,6 @@
 *.wav
 *.exe
 .idea
+.ipynb_checkpoints
 cmake-build-debug
 Intermediate
