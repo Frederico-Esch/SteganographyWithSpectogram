@@ -1,3 +1,5 @@
 *.png
 *.wav
+*.exe
+.idea
 Intermediate
