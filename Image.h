@@ -1,5 +1,8 @@
+#pragma once
 #include <iostream>
-#include <stdint.h>
+#include <cstdint>
+#include "Manipulator.h"
+class Manipulator;
 typedef std::string string;
 class Image {
 
@@ -11,6 +14,7 @@ class Image {
 public:
 
     Image(string filename, int n = 0);
+    Image(const Manipulator& manipulator);
     Image(int w, int h, int channels);
 
     ~Image();
@@ -20,18 +24,10 @@ public:
     int width();
     int height();
     int n_channels();
+    uint8_t max();
+    uint8_t min();
+    std::pair<uint8_t, uint8_t> min_max();
+    void contrast();
 
     bool write(string filename);
-};
-
-class Manipulator {
-
-    float* data;
-    int w, h, channels;
-
-public:
-    Manipulator(Image& image);
-    Manipulator(int w, int h, int channels, uint8_t* data);
-    void normalize();
-    void remove_low(float threshold);
 };
