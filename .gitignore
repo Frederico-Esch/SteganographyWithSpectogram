@@ -1,6 +1,7 @@
 *.png
 *.wav
 *.exe
+*.ipynb
 .idea
 .ipynb_checkpoints
 cmake-build-debug
