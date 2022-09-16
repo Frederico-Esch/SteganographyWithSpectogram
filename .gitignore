@@ -5,5 +5,6 @@
 .idea
 .ipynb_checkpoints
 cmake-build-debug
+cmake-build-debug-visual-studio
 paths
 Intermediate
