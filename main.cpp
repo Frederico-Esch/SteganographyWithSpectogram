@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stdint.h>
 #include <opencv2/opencv.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/highgui.hpp>
@@ -6,7 +7,19 @@
 #define CONTRAST_SCALE_MAX 5e7
 
 typedef std::string string;
-const string filename = "../robot.png";
+const string filename          = "../robot.png";
+
+const int32_t sample_rate      = 44100;
+const int32_t max_intensity    = 32767;
+
+const double  duration         = .5;
+const int32_t max_frequency    = 22000;
+
+const int32_t stepSize         = 400;
+const int32_t insideSkip       = 500;
+
+const int32_t steppingSepctrum = max_frequency/stepSize;
+const int32_t max_frame        = duration*sample_rate;
 
 /* CONTRAST MODE
  * for(size_t i = 0; i < size; i++){
@@ -36,11 +49,11 @@ int main() {
         if(p < .5) p = 0;
     });
 
-    cv::resize(image, image, cv::Size(1000, 1000));
+    cv::resize(image, image, cv::Size(steppingSepctrum, max_frame));
 
-    cv::namedWindow("IDK", 0);
-    cv::imshow("IDK", image);
-    cv::waitKey(0);
+    //cv::namedWindow("IDK", 0);
+    //cv::imshow("IDK", image);
+    //cv::waitKey(0);
 
     cv::normalize(image, image, 255, 0, cv::NORM_MINMAX);
     cv::imwrite("../result.png", image);
